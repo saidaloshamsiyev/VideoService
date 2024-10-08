@@ -10,14 +10,11 @@ import java.util.UUID;
 @Setter
 @Builder
 public class VideoRequest {
-
     private String title;
     private String description;
     private String videoUrl;
     private String thumbnailUrl;
     private UUID channelId;
-
-
 
 }
 

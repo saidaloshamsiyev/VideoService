@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity(name = "videos")
 @Builder
 public class VideoEntity extends BaseEntity {
-
       private String title;
       private String description;
       private String videoUrl;
@@ -22,9 +21,6 @@ public class VideoEntity extends BaseEntity {
       private UUID commentId;
       private UUID likeId;
       private UUID channelId;
-
-
-
 }
 
 

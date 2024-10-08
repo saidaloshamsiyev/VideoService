@@ -15,6 +15,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class VideoServiceImpl implements VideoService {
+
     private final VideoRepository videoRepository;
     private final Cloudinary cloudinary;
 
@@ -89,3 +90,5 @@ public class VideoServiceImpl implements VideoService {
         videoRepository.save(videoEntity);
     }
 }
+
+

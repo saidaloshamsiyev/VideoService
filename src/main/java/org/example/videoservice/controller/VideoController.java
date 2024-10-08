@@ -14,7 +14,6 @@ import java.util.UUID;
 public class VideoController {
 
     private VideoService videoService;
-
     @PostMapping("/save")
     public VideoResponse saveVideo(
             @RequestPart("videoRequest") VideoRequest videoRequest,

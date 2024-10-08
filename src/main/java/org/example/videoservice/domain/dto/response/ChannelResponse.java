@@ -16,6 +16,4 @@ public class ChannelResponse {
     private String nickName;
     private UUID ownerId;
     private Integer subscriberCount;
-
-
 }

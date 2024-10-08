@@ -10,7 +10,6 @@ import java.util.UUID;
 @Setter
 @Builder
 public class VideoResponse {
-
     private String title;
     private String description;
     private String videoUrl;
@@ -19,7 +18,4 @@ public class VideoResponse {
     private UUID commentId;
     private UUID likeId;
     private UUID channelId;
-
-
-
 }

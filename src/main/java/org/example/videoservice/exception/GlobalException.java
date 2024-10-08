@@ -16,7 +16,6 @@ public class GlobalException {
     public ResponseEntity<String> handleBaseException(BaseException e) {
         return ResponseEntity.status(404).body(e.getMessage());
     }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         Map<String, String> errors = e.getBindingResult()
@@ -28,10 +27,5 @@ public class GlobalException {
                 );
         return ResponseEntity.status(400).body(errors);
     }
-
-
-
-
-
-
 }
+

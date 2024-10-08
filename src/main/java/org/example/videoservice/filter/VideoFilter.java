@@ -29,8 +29,6 @@ public class VideoFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-
-
 }
 
 
