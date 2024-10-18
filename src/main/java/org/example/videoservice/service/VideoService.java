@@ -2,11 +2,14 @@ package org.example.videoservice.service;
 
 import org.example.videoservice.domain.dto.requests.VideoRequest;
 import org.example.videoservice.domain.dto.response.VideoResponse;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 public interface VideoService {
 
-        VideoResponse saveVideo(VideoRequest videoRequest);
-        VideoResponse getVideo(String videoId);
-        void deleteVideo(String videoId);
+        VideoResponse saveVideo(VideoRequest videoRequest, MultipartFile multipartFile);
+        VideoResponse getVideo(UUID videoId);
+        void deleteVideo(UUID videoId);
 
 }
