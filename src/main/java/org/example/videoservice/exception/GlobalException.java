@@ -14,7 +14,7 @@ public class GlobalException {
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<String> handleBaseException(BaseException e) {
-        return ResponseEntity.status(404).body(e.getMessage());
+        return ResponseEntity.status(400).body(e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

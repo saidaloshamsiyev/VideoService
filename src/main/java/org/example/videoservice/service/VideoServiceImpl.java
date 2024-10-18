@@ -26,24 +26,20 @@ public class VideoServiceImpl implements VideoService {
     @Transactional
     public VideoResponse saveVideo(VideoRequest videoRequest, MultipartFile file) {
         String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        String UPLOAD_DIR = "C:\\metube\\ChannelService\\src\\main\\resources";
+        String UPLOAD_DIR = "C:\\metube\\VideoService\\src\\main\\resources";
         Path filePath = Paths.get(UPLOAD_DIR, fileName);
         try {
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException("Failed to save video file", e);
         }
-
         VideoEntity videoEntity = new VideoEntity();
         videoEntity.setTitle(videoRequest.getTitle());
         videoEntity.setDescription(videoRequest.getDescription());
         videoEntity.setVideoUrl(generateUniqueVideoUrl());
-        videoEntity.setThumbnailUrl(videoRequest.getThumbnailUrl());
         videoEntity.setChannelId(videoRequest.getChannelId());
         videoEntity.setViews(0);
-
         VideoEntity savedVideo = videoRepository.save(videoEntity);
-
         return mapToVideoResponse(savedVideo);
     }
 
@@ -69,7 +65,6 @@ public class VideoServiceImpl implements VideoService {
         videoResponse.setTitle(videoEntity.getTitle());
         videoResponse.setDescription(videoEntity.getDescription());
         videoResponse.setVideoUrl(videoEntity.getVideoUrl());
-        videoResponse.setThumbnailUrl(videoEntity.getThumbnailUrl());
         videoResponse.setViews(videoEntity.getViews());
         videoResponse.setCommentId(videoEntity.getCommentId());
         videoResponse.setLikeId(videoEntity.getLikeId());
@@ -77,6 +72,8 @@ public class VideoServiceImpl implements VideoService {
 
         return videoResponse;
     }
+
+
 
 
 
