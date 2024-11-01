@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class VideoController {
     private final VideoService videoService;
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<VideoResponse> createVideo(@RequestPart ("jsonData")VideoRequest videoRequest,
                                                      @RequestPart("video") MultipartFile videoFile) {
         VideoResponse savedVideo = videoService.saveVideo(videoRequest,videoFile);
