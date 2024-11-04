@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/video")
+@RequestMapping("/api/video")
 @RequiredArgsConstructor
 public class VideoController {
     private final VideoService videoService;
