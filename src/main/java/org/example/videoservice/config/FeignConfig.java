@@ -15,6 +15,7 @@ public class FeignConfig {
             String username = (String) authentication.getPrincipal();
             requestTemplate.header("X-Username",username);
         };
+
     }
 }
 
