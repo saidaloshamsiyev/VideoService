@@ -23,13 +23,13 @@ public class VideoController {
         return new ResponseEntity<>(savedVideo, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{videoId}")
+    @GetMapping("get/{videoId}")
     public ResponseEntity<VideoResponse> getVideo(@PathVariable UUID videoId) {
         VideoResponse videoResponse = videoService.getVideo(videoId);
         return ResponseEntity.ok(videoResponse);
     }
 
-    @DeleteMapping("/{videoId}")
+    @DeleteMapping("/delete/{videoId}")
     public ResponseEntity<Void> deleteVideo(@PathVariable UUID videoId) {
         videoService.deleteVideo(videoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
