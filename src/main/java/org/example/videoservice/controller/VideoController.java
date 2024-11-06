@@ -33,7 +33,7 @@ public class VideoController {
         return ResponseEntity.ok(videoResponse);
     }
 
-    @DeleteMapping("/{videoId}")
+    @DeleteMapping("delete/{videoId}")
     public ResponseEntity<Void> deleteVideo(@PathVariable UUID videoId) {
         videoService.deleteVideo(videoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
