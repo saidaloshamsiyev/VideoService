@@ -27,7 +27,7 @@ public class VideoController {
         return new ResponseEntity<>(savedVideo, HttpStatus.CREATED);
     }
 
-    @GetMapping("finById/{videoId}")
+    @GetMapping("/finById/{videoId}")
     public ResponseEntity<VideoResponse> getVideo(@PathVariable UUID videoId) {
         VideoResponse videoResponse = videoService.getVideo(videoId);
         return ResponseEntity.ok(videoResponse);

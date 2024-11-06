@@ -13,11 +13,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    private final String[] WHITE_LIST = {"/api/auth/login", "/api/auth/register",
+    private final String[] WHITE_LIST = {
             "/api/auth/swagger-ui/**",
             "/api/auth/v3/api-docs/**",
-            "/api/video/swagger-ui/**",
-            "/api/video/v3/api-docs/**",
+            "/api/channel/swagger-ui/**",
+            "/api/channel/v3/api-docs/**",
             "/v3/api-docs/",
             "/swagger-ui/",
             "/swagger-ui.html"
@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(WHITE_LIST).permitAll()
+                                .requestMatchers("/api/video/finById/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new CustomFilter(),
