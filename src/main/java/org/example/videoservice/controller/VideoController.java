@@ -1,5 +1,6 @@
 package org.example.videoservice.controller;
 
+import jakarta.servlet.annotation.MultipartConfig;
 import lombok.RequiredArgsConstructor;
 import org.example.videoservice.domain.dto.requests.VideoRequest;
 import org.example.videoservice.domain.dto.response.VideoResponse;
@@ -14,6 +15,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/video")
 @RequiredArgsConstructor
+@MultipartConfig(maxFileSize = 20 * 1024 * 1024,
+        maxRequestSize = 50 * 1024 * 1024,
+        fileSizeThreshold = 10 * 1024)
 public class VideoController {
     private final VideoService videoService;
     @PostMapping("/create")
@@ -23,13 +27,13 @@ public class VideoController {
         return new ResponseEntity<>(savedVideo, HttpStatus.CREATED);
     }
 
-    @GetMapping("get/{videoId}")
+    @GetMapping("finById/{videoId}")
     public ResponseEntity<VideoResponse> getVideo(@PathVariable UUID videoId) {
         VideoResponse videoResponse = videoService.getVideo(videoId);
         return ResponseEntity.ok(videoResponse);
     }
 
-    @DeleteMapping("/delete/{videoId}")
+    @DeleteMapping("delete/{videoId}")
     public ResponseEntity<Void> deleteVideo(@PathVariable UUID videoId) {
         videoService.deleteVideo(videoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
