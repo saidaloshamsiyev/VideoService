@@ -78,12 +78,16 @@ public class VideoServiceImpl implements VideoService {
             return mapToVideoResponse(videoEntityOptional.get());
         } else {
             throw new RuntimeException("Video not found");
-        }    }
+        }
+    }
+
 
     @Override
     public void deleteVideo(UUID videoId) {
         videoRepository.deleteById(videoId);
     }
+
+
     private String generateUniqueVideoUrl() {
         String uniqueId = UUID.randomUUID().toString().substring(0, 8);
         return "https://youtube.com/shorts/" + uniqueId;
