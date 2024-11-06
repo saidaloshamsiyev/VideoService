@@ -47,13 +47,13 @@ jobs:
 
       # Step 6: Define the VERSION environment variable
       - name: Set version
-        run: echo "VERSION=1" >> $GITHUB_ENV
+        run: echo "VERSION=2" >> $GITHUB_ENV
 
         # Step 7: Build and push Docker image
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/channel-service1:${{ env.VERSION }} .
-          docker push ${{ secrets.DOCKER_USERNAME }}/channel-service1:${{ env.VERSION }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/video-service1:${{ env.VERSION }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/video-service1:${{ env.VERSION }}
       
 
       #      # Step 6: Build and push Docker image saidalo
