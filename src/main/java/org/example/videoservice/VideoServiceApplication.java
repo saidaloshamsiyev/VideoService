@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing(auditorAwareRef = "customAuditor")
+//@EnableJpaAuditing(auditorAwareRef = "customAuditor")
+@EnableJpaAuditing
 
 public class VideoServiceApplication {
     public static void main(String[] args) {
