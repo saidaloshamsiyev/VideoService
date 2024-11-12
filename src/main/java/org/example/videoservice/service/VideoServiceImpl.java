@@ -1,5 +1,4 @@
 package org.example.videoservice.service;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.videoservice.domain.dto.requests.VideoRequest;
@@ -12,12 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-
-import java.io.File;
 import java.io.IOException;
-
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+
 
 @Service
 @RequiredArgsConstructor
@@ -89,11 +88,28 @@ public class VideoServiceImpl implements VideoService {
         videoRepository.deleteById(videoId);
     }
 
+    @Override
+    public List<VideoResponse> getVideosByChannelId(UUID channelId) {
+        List<VideoEntity> videoEntities = videoRepository.findAllByChannelId(channelId);
+        return videoEntities.stream()
+                .map(video -> new VideoResponse(
+                        video.getTitle(),
+                        video.getDescription(),
+                        video.getVideoUrl(),
+                        video.getViews(),
+                        video.getCommentId(),
+                        video.getLikeId(),
+                        video.getChannelId()
+                ))
+                .toList();
+    }
 
     private String generateUniqueVideoUrl() {
         String uniqueId = UUID.randomUUID().toString().substring(0, 8);
         return "https://youtube.com/shorts/" + uniqueId;
     }
+
+
     private VideoResponse mapToVideoResponse(VideoEntity videoEntity) {
         VideoResponse videoResponse = new VideoResponse();
         videoResponse.setTitle(videoEntity.getTitle());
@@ -103,9 +119,14 @@ public class VideoServiceImpl implements VideoService {
         videoResponse.setCommentId(videoEntity.getCommentId());
         videoResponse.setLikeId(videoEntity.getLikeId());
         videoResponse.setChannelId(videoEntity.getChannelId());
-
         return videoResponse;
     }
+
+
+
+
+
+
 
 
 

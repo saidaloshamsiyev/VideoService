@@ -4,12 +4,14 @@ import jakarta.servlet.annotation.MultipartConfig;
 import lombok.RequiredArgsConstructor;
 import org.example.videoservice.domain.dto.requests.VideoRequest;
 import org.example.videoservice.domain.dto.response.VideoResponse;
+import org.example.videoservice.domain.entity.VideoEntity;
 import org.example.videoservice.service.VideoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -38,5 +40,20 @@ public class VideoController {
         videoService.deleteVideo(videoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+    @GetMapping("/by-channel/{channelId}")
+    public ResponseEntity<List<VideoResponse>> getVideosByChannelId(@PathVariable UUID channelId) {
+        List<VideoResponse> videos = videoService.getVideosByChannelId(channelId);
+        return ResponseEntity.ok(videos);
+    }
+
+
+
+
+
+
+
+
 
 }

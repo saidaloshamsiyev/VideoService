@@ -11,7 +11,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class VideoResponse {
-
     private String title;
     private String description;
     private String videoUrl;
