@@ -59,11 +59,13 @@ public class VideoServiceImpl implements VideoService {
             throw new RuntimeException("Failed to upload file to S3", e);
         }
 
+        String imageUrl = "https://us-east-1.console.aws.amazon.com/s3/object/" + bucketName +
+                "?region=us-east-1&bucketType=general&prefix=" + fileName;
 
         VideoEntity videoEntity = new VideoEntity();
         videoEntity.setTitle(videoRequest.getTitle());
         videoEntity.setDescription(videoRequest.getDescription());
-        videoEntity.setVideoUrl(generateUniqueVideoUrl());
+        videoEntity.setVideoUrl(imageUrl);
         videoEntity.setChannelId(videoRequest.getChannelId());
         videoEntity.setViews(0);
         VideoEntity savedVideo = videoRepository.save(videoEntity);

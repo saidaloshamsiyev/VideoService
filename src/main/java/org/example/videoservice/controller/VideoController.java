@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/video")
+@RequestMapping("/api/video")
 @RequiredArgsConstructor
 @MultipartConfig(maxFileSize = 20 * 1024 * 1024,
         maxRequestSize = 50 * 1024 * 1024,
@@ -29,7 +29,7 @@ public class VideoController {
         return new ResponseEntity<>(savedVideo, HttpStatus.CREATED);
     }
 
-    @GetMapping("finById/{videoId}")
+    @GetMapping("/finById/{videoId}")
     public ResponseEntity<VideoResponse> getVideo(@PathVariable UUID videoId) {
         VideoResponse videoResponse = videoService.getVideo(videoId);
         return ResponseEntity.ok(videoResponse);
